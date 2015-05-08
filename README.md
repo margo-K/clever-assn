@@ -83,8 +83,8 @@ To get a handle on what it might look like to use clever well, we can take a loo
 
 | District Id | Total Number of Apps|
 | -------- | : ----------:|
-| 34 | 10|
-| 542 | 12|
+| 34 | 10 |
+| 542 | 12 |
 | 791 | 8 |
 | 1089 | 17 |
 | 1160 | 13 |
