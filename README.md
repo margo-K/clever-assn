@@ -1,6 +1,6 @@
 ##Question 1
 Imagine one of Clever's districts is being criticized by a parent organization for class sizes that are too big. Spending less than an hour, use the Clever API & the demo data set to perform a quick analysis of class sizes.
-![Plot of Query Time by K](https://raw.github.com/margo-K/clever-assn/master/app_usage_per_district.png) 
+
 
 ```python
 import requests
@@ -66,6 +66,7 @@ Looking at the full distribution:
 apps_per_district = grouped_districts.size()
 apps_per_district.value_counts()
 ```
+![Plot of App Usage By District](https://raw.github.com/margo-K/clever-assn/master/app_usage_per_district.png) 
 | Apps Per District  | Total Districts   | Percentage of Districts (%)  |
 | ------------- |:-------------:| -----:|
 | 1      | 1336 | 79.5% |
@@ -84,8 +85,9 @@ apps_per_district.value_counts()
 | 10| 1     |    <1%  |
 |9 | 1     |    <1%  |
 | 8 | 1| <1%  |
-![App Usage Per District](https://www.dropbox.com/s/2vxdzi9i6n8yz3a/app_usage_per_district.png?dl=0)
+
 ###How many districts is each app in?
+![Plot of App Usage By District](https://raw.github.com/margo-K/clever-assn/master/district_per_app.png)
 To get at the problem from another angle, we also want to look at how apps are used in each district:
 * Min Districts an App is in: 1
 * Max Districts an App is in: 285 (only one app)
