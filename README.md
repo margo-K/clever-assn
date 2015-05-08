@@ -9,7 +9,7 @@ import numpy as np
 
 r = requests.get('https://api.clever.com/v1.1/sections?limit=10000',headers={'Authorization':'Bearer DEMO_TOKEN'})
 records = json.loads(r.text)['data']
-class_sizes = [len(records['data']['students']) for record in records]
+class_sizes = [len(record['data']['students']) for record in records]
 ```
 The above code will yield a list of class sizes for each class available via the API call. Note that since the parent complaint was about class sizes in a district, one can do a quick check to ensure that we do not need to group these classes by district since they are all from a single sample district:
 ```python
@@ -19,8 +19,9 @@ The above code will yield a list of class sizes for each class available via the
 Going back to the question of class sizes, we find:
 * Sample Mean: 25.5
 * Standard Deviation: 6.7
+* Max class Size: 50
+* Min class Size: 3
 * Total Classes: 382
-* Confidence Interval: [Insert Here]
 
 ##Question 2
 Clever allows school districts to create user accounts in apps for their students and teachers. 
@@ -31,11 +32,6 @@ The linked dataset represents the installation pairings between applications and
 Use this dataset to explore usage patterns of Clever. For example, what share of districts use 1, 2, or more apps? 
 Do apps break down in patterns as to what portion of the district they are deployed to? 
 What else can you discover about app installs in Clever?
-
-##Clever Problem Context
-1. Think of the Districts as “Customers”. We think of a happy district perhaps as one which integrates more apps over time. We ultimately want them to find the apps useful and to add more apps to more of their customers if it seems useful for them. In lieu of actual behavioral data, we can look at how they are growing over time.
-2. Think of the Apps as “Customers”. We think of a happy app developer as one that is getting more and more app installs over time. This is also how clever makes its money, so the more developers have installs over time, the more money clever can make
-
 
 ###Basics
 To explore the data, we will use the Python package pandas. As a reference, here are the basic entities to which I will be referring:
@@ -54,10 +50,10 @@ grouped_created_by = df.groupby('created')
 
 ##Usage Insights
 To get a basic handle on the relationships between districts and apps, as provided in this data set, we first do a little exploratory work. ####How many apps are districts using?
-Out of the 1680 districts included in this dataset, the vast majority (1336 ~= 79.5%) use only one app. 13.27% use 2 apps and only 7.2% use more than 2 apps.  [ADD WHAT HAPPENS IF WE ELIMINATE ROWS WHERE ACCOUNTS PROVISIONED == 0]
+Out of the 1680 districts included in this dataset, the vast majority (1336 ~= 79.5%) use only one app. 13.27% use 2 apps and only 7.2% use more than 2 apps.  
 * Minimum Apps/District: 1
 * Maximum Apps/District: 17
-Given that the total app catalog (represented in this dataset) is 94 apps, this means that even the most active districts use less than 20% of the total app catalog. **** ADD SOMETHING HERE ****
+Given that the total app catalog (represented in this dataset) is 94 apps, this means that even the most active districts use less than 20% of the total app catalog.
 Looking at the full distribution:
 ```python
 apps_per_district = grouped_districts.size()
@@ -75,17 +71,17 @@ apps_per_district.value_counts()
 
 ###Top Engagement Districts
 
-|District Id| Total Number of Apps|
+| District Id | Total Number of Apps|
 | -------- | : ----------:|
-|34| 10|
-|542| 12|
-|791| 8 |
-|1089| 17 |
-|1160| 13 |
-|1734| 11 |
-|1994| 16 |
-|2442| 9 | 
-|2641| 15 |
+| 34 | 10|
+| 542 | 12|
+| 791 | 8 |
+| 1089 | 17 |
+| 1160 | 13 |
+| 1734 | 11 |
+| 1994 | 16 |
+| 2442 | 9 | 
+| 2641 | 15 |
 
 ###How many districts is each app in?
 ![Plot of App Usage By District](https://raw.github.com/margo-K/clever-assn/master/district_per_app.png)
@@ -101,6 +97,14 @@ To get at the problem from another angle, we also want to look at how apps are u
 Note: We are assuming that every connection (expressed as a row in the data provided) can be counted as a district "using" an app. For more see "Assumptions" and "What to do about missing data?"
 * Most clever districts are just using 
 * The two spikes in deployment in the time period covered seem to be in September of both years, with the second year significantly larger than the first. This aligns with the clever "high season"
+
+###Exploring The Bright Spots
+So far, we've just scratched the surface of what this data set (or the larger data set of which its part) can tell us. To really dig deeper, we need to think about the underlying questions at stake. Clever has at least two entities that could be considered "customers" - app developers and school districts. Clever would like to make both of these groups happy and help them meet their goals. In looking at the data, we'd like to know how we're doing with each of those groups and how "doing well" manifests itself in data.
+
+When dealing with school districts, we ultimately want to them to be able to find the apps that they find useful and use Clever to integrate to more of their student body over time. Without actual usage data, we can't get a firm grasp on how well served the districts are by the apps, but we could instead use the growth in app usage over time as a proxy (the assumption being that a district that finds some apps helpful will seek out and ultimately expand to using other apps in the Clever catalog). For app developers, we could imagine a happy app developer would be one who is getting more and more installs over time.
+
+For both of these groups, we're assuming greater app integration can be used as a proxy for greater satisfaction. Aside from just 
+
 
 ###Questions and Assumptions
 The following are assumptions on which this analysis is based. In practice, I would revise these assumptions using the domain knowledge of colleagues:
