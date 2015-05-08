@@ -81,8 +81,8 @@ In this context, we notice a few things about the data above:
 ###Exploring The Bright Spots
 To get a handle on what it might look like to use clever well, we can take a look at the highest performing districts.
 
-| District Id | Total Number of Apps|
-| -------- | : ----------:|
+| District Id | Total Number of Apps |
+| -------- |:----------:|
 | 34 | 10 |
 | 542 | 12 |
 | 791 | 8 |
