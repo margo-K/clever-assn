@@ -79,7 +79,7 @@ In this context, we notice a few things about the data above:
 (3) Roughly 1/4 of apps are only in one district. This suggests that there might be a bigger variety of apps being used than one might otherwise expect (think of this in opposition to the majority of districts using 1 or 2 of the biggest apps and then using almost none of the others). Also, in this data there are 94 different apps being used total. As a next stage, one could explore how bigger budget apps compare to apps made by individuals or smaller companies.
 
 ###Exploring The Bright Spots
-To get a handle on what it might look like to use clever well, we can take a look at the highest performing districts:
+To get a handle on what it might look like to use clever well, we can take a look at the highest performing districts.
 
 | District Id | Total Number of Apps|
 | -------- | : ----------:|
