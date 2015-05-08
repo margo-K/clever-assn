@@ -74,6 +74,7 @@ apps_per_district.value_counts()
 | >4 | 37      |   2.2% |
 
 ###Top Engagement Districts
+
 |District Id| Total Number of Apps|
 | -------- | : ----------:|
 |34| 10|
