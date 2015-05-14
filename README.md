@@ -66,9 +66,9 @@ To get at the problem from another angle, we also want to look at how apps are u
 * 8.5% of apps are in more than 100 districts (8 apps total)
 
 ###What do we know
-So far, we've just scratched the surface of what this data set (or the larger data set of which its part) can tell us. We have a basic idea of how apps and district connections are made, but to really dig deeper, we need to think about what underlying questons we might want to answer. Clever has at least two entities that could be considered "customers" - app developers and school districts. As a company, Clever would presumably like to make both of these groups happy and help them meet their goals. We'd like to be able to use this data to understand how clever is working for these two customer types. To do this, we have to first understand what their goals might be.
+So far, we've just scratched the surface of what this data set (or the larger data set of which its part) can tell us. We have a basic idea of how apps and district connections are made, but to really dig deeper, we need to think about what underlying questons we might want to answer. Clever has at least two entities that could be considered "customers" - app developers and school districts. As a company, Clever would presumably like to make both of these groups happy and help them meet their goals. We'd like to be able to use this data to understand how Clever is working for these two customer types. To do this, we have to first understand what their goals might be.
 
-In a real-life situation, I would rely on colleagues who speak directly to these different user groups to get an understanding of what it means for each of these groups to be "happy customers". In lieu of those conversatios, I'll venture to guess that for app developers, getting more installs over time would make them happy. School districts, on the other hand, ultimately want to them to be able to find the apps that they find useful and use Clever to provide their students with access to these apps. Without actual usage data, we can't get a firm grasp on how well used the particular apps school districts are. We can, however, assume that a school district that either (a) integrates more apps over time or (b) expands the proportion of their students having access to the apps is happy with the service that's being provided.
+In a real-life situation, I would rely on colleagues who speak directly to these different user groups to get an understanding of what it means for each of these groups to be "happy customers". In lieu of those conversatios, I'll venture to guess that for app developers, getting more installs over time would make them happy. School districts, on the other hand, ultimately want to them to be able to find the apps that they find useful and use Clever to provide their students with access to these apps. Without actual usage data, we can't get a firm grasp on how well used the particular apps school districts use are. We can, however, assume that a school district that either (a) integrates more apps over time or (b) expands the proportion of their students having access to the apps is happy with the service that's being provided.
 
 In this context, we notice a few things about the data above:
 
@@ -79,7 +79,7 @@ In this context, we notice a few things about the data above:
 (3) Roughly 1/4 of apps are only in one district. This suggests that there might be a bigger variety of apps being used than one might otherwise expect (think of this in opposition to the majority of districts using 1 or 2 of the biggest apps and then using almost none of the others). Also, in this data there are 94 different apps being used total. As a next stage, one could explore how bigger budget apps compare to apps made by individuals or smaller companies.
 
 ###Exploring The Bright Spots
-To get a handle on what it might look like to use clever well, we can take a look at the highest performing districts.
+To get a handle on what it might look like to use Clever well, we can take a look at the highest performing districts.
 
 | District Id | Total Number of Apps |
 | -------- |:----------:|
@@ -95,20 +95,24 @@ To get a handle on what it might look like to use clever well, we can take a loo
 
 When we look at the data for these districts individually, we see that there are many different types of usage patterns. Some districts install almost all of their apps in a short period of time (within a few months), some districts install apps all year long. Some try an app in the off season or a year before then come back and provision significantly more. There's also a fair amount of variety in the portion of their students they provide app installs to. All of these could be explored in more detail on a larger data set to determine whether any of these usage patterns lead to better overall adoption for districts.
 
-###Questions and Assumptions
+###Assumptions
 The following are assumptions on which this analysis is based. In practice, I would revise these assumptions using the domain knowledge of colleagues:
-* Assume the "created" date is the date at which the apps were provisioned and that apps are only provisioned once (i.e. students can not be added to an app in a district piecemeal). This is supported in the data by the fact that each app-district combo only has a single creation date/row in the data
-* Rows with with district size = 0 and/or with accounts provisioned = 0 represent actual district-app connections but with missing data. For the purposes of this analysis, we will assume that the number of accounts provisioned for any app and any district with such characteristics is nonzero. This could be verified or falsified by speaking with someone with greater knowledge of how and when apps/districts are added to the database. An alternate assumption would be that, at least for the districts with non-negative district sizes, if installs =0, the app has not been installed. 
-####Other Questions
+* Assume the "created" date is the date at which the apps were provisioned and that apps are only provisioned once (i.e. students can not be added to an app in a district piecemeal). This is supported in the data by the fact that each app-district combo only has a single creation date/row in the data.
+* Rows with with district size = 0 and/or with accounts provisioned = 0 represent actual district-app connections but with missing data. For the purposes of this analysis, we will assume that the number of accounts provisioned for any app and any district with such characteristics is nonzero. This could be verified or falsified by speaking with someone with greater knowledge of how and when apps/districts are added to the database. An alternate assumption would be that, at least for the districts with non-negative district sizes, if installs = 0, the app has not yet been installed.
+
+###Points for clarification
 1. What does more than 100% provisioning for a given app imply? Does this mean accounts created for teachers or duplicate accounts for students or creation of accounts for students who no longer attend the school?
 2. For districts that have extremely small district sizes (1 or 2 students), is this accurate or does this represent a different kind of intended usage (say for only special education students, for example) than the other apps?
 
 ##Next Steps
 In addition to the questions raised above, the following are questions that could be explored in future work:
+
 (1) Are there apps which are only deployed in "big districts" and apps that are only deployed in "small" ones?
+
 (2) Do the following factors affect district engagement with apps:
 * districts that try one app then try the rest later vs. all at once?
 * districts that provision all apps to everyone vs. those that do just some to some?
 * districts that provision apps all year long vs. in just one season?
+
 (3) Is there a correlation between the district size and the portion of a district apps are deployed to (for example, do small districts provision to everyone)?  
 
